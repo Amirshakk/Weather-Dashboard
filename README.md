@@ -1,12 +1,22 @@
-# React + Vite
+# Weather Forecast Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, interactive web application built with React and Vite to display real-time weather data using the OpenWeatherMap API. Features include dynamic visualizations (charts/maps), favorite cities, and a responsive UI.
 
-Currently, two official plugins are available:
+## Features (Planned)
+- Fetch real-time weather data for any city using OpenWeatherMap API.
+- Interactive charts and maps using Plotly or D3.js.
+- Save favorite cities with SQLite (optional Flask backend).
+- Responsive design with TailwindCSS.
+- Deployed on Vercel/Netlify (frontend) and Heroku (backend).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
+- **Frontend**: React, Vite, TailwindCSS
+- **Backend** (optional): Flask, SQLite
+- **Visualizations**: Plotly or D3.js
+- **Deployment**: Vercel/Netlify, Heroku
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Setup Instructions
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Amirshakk/Weather-Dashboard.git
+   cd Weather-Dashboard
