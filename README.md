@@ -1,41 +1,12 @@
-Weather Forecast Dashboard
- A modern, interactive web application built with React and Vite to display real-time weather data using the OpenWeatherMap API. Features include dynamic visualizations (charts/maps), favorite cities, and a responsive UI.
+## Weather Forecast Dashboard
 
- ## Features (Planned)
- - Fetch real-time weather data for any city using OpenWeatherMap API.
- - Interactive charts and maps using Plotly or D3.js.
- - Save favorite cities with SQLite (optional Flask backend).
- - Responsive design with TailwindCSS.
- - Deployed on Vercel/Netlify (frontend) and Heroku (backend).
+A responsive web app built with React, Vite, and TailwindCSS, fetching real-time weather data from OpenWeatherMap API. Features include a search bar, weather card, and favorite cities list.
 
- ## Tech Stack
- - **Frontend**: React, Vite, TailwindCSS
- - **Backend** (optional): Flask, SQLite
- - **Visualizations**: Plotly or D3.js
- - **Deployment**: Vercel/Netlify, Heroku
+## Project Status
+- **Phase 1: Project Setup** - Completed: React project initialized with Vite, connected to GitHub.
+- **Phase 2: UI Design** - Completed: Added TailwindCSS and React components (SearchBar, WeatherCard, FavoriteCities). Fixed PostCSS config for ES Module compatibility.
+- **Phase 3: API Integration** - Completed: Integrated OpenWeatherMap API to fetch real-time weather data.
+- Next: Add visualizations (charts/maps) with Plotly or D3.js.
 
- ## Setup Instructions
- 1. Clone the repository:
-    ```bash
-    git clone https://github.com/Amirshakk/Weather-Dashboard.git
-    cd Weather-Dashboard
-    ```
- 2. Install dependencies:
-    ```bash
-    npm install
-    ```
- 3. Run the development server:
-    ```bash
-    npm run dev
-    ```
- 4. Open `http://localhost:5173` in your browser.
-
- ## Project Status
- - **Phase 1: Project Setup** - Completed: React project initialized with Vite, connected to GitHub.
- - Next: UI design, API integration, and visualizations.
-
- ## Contributing
- Feel free to submit issues or pull requests. Contributions are welcome!
-
- ## License
- MIT License
+## Screenshot
+[Add screenshot after next commit]
