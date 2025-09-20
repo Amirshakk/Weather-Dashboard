@@ -3,33 +3,49 @@ import React, { useState } from 'react';
      import SearchBar from './components/SearchBar';
      import WeatherCard from './components/WeatherCard';
      import FavoriteCities from './components/FavoriteCities';
+     import WeatherChart from './components/WeatherChart';
 
      function App() {
        const [weatherData, setWeatherData] = useState(null);
+       const [forecastData, setForecastData] = useState(null);
        const [favorites, setFavorites] = useState([]);
        const [error, setError] = useState(null);
 
        const handleSearch = async (city) => {
          try {
-           const response = await axios.get(
+           // Current weather
+           const weatherResponse = await axios.get(
              `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${
                import.meta.env.VITE_OPENWEATHER_API_KEY
              }&units=metric`
            );
+           console.log('Weather API Response:', weatherResponse.data);
            setWeatherData({
-             city: response.data.name,
-             temperature: Math.round(response.data.main.temp),
-             description: response.data.weather[0].description,
-             humidity: response.data.main.humidity,
-             windSpeed: response.data.wind.speed,
+             city: weatherResponse.data.name,
+             temperature: Math.round(weatherResponse.data.main.temp),
+             description: weatherResponse.data.weather[0].description,
+             humidity: weatherResponse.data.main.humidity,
+             windSpeed: weatherResponse.data.wind.speed,
            });
+
+           // 5-day forecast
+           const forecastResponse = await axios.get(
+             `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${
+               import.meta.env.VITE_OPENWEATHER_API_KEY
+             }&units=metric`
+           );
+           console.log('Forecast API Response:', forecastResponse.data);
+           setForecastData(forecastResponse.data.list);
+
            setError(null);
            if (!favorites.includes(city)) {
              setFavorites([...favorites, city]);
            }
          } catch (err) {
+           console.error('API Error:', err.response?.data || err.message);
            setError('City not found or API error. Please try again.');
            setWeatherData(null);
+           setForecastData(null);
          }
        };
 
@@ -42,10 +58,13 @@ import React, { useState } from 'react';
            <h1 className="text-4xl font-bold text-gray-800 mb-6">Weather Forecast Dashboard</h1>
            <SearchBar onSearch={handleSearch} />
            {error && <p className="text-red-500 mb-4">{error}</p>}
-           <div className="flex flex-col md:flex-row gap-4 w-full max-w-4xl">
-             <WeatherCard weatherData={weatherData} />
-             <FavoriteCities favorites={favorites} onSelectCity={handleSelectCity} />
-           </div>
+           <WeatherCard weatherData={weatherData} className="w-full max-w-md mb-6" />
+           <FavoriteCities
+             favorites={favorites}
+             onSelectCity={handleSelectCity}
+             className="w-full max-w-md mb-6"
+           />
+           <WeatherChart forecastData={forecastData} />
          </div>
        );
      }
