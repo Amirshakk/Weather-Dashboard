@@ -1,38 +1,43 @@
 import React from 'react';
      import Plot from 'react-plotly.js';
 
-     function WeatherChart({ forecastData }) {
+     function WeatherChart({ forecastData, className }) {
        if (!forecastData) {
-         return <p className="text-gray-500 text-center"></p>;
+         return (
+           <div className={`bg-white shadow-lg rounded-lg p-6 ${className}`}>
+             <p className="text-gray-500 text-center">No forecast data available. Search for a city.</p>
+           </div>
+         );
        }
 
        const dates = forecastData.map(item => item.dt_txt);
-       const temps = forecastData.map(item => item.main.temp);
+       const temperatures = forecastData.map(item => item.main.temp);
 
        return (
-         <div className="bg-white shadow-lg rounded-lg p-6 m-4 w-full max-w-4xl">
-           <h2 className="text-2xl font-bold text-gray-800 mb-4">5-Day Temperature Forecast</h2>
+         <div className={`bg-white shadow-lg rounded-lg p-6 ${className}`}>
+           <h2 className="text-2xl font-bold text-gray-800 mb-4">5-Day Forecast</h2>
            <Plot
              data={[
                {
                  x: dates,
-                 y: temps,
+                 y: temperatures,
                  type: 'scatter',
                  mode: 'lines+markers',
-                 marker: { color: '#3B82F6' },
-                 line: { color: '#3B82F6' },
-                 name: 'Temperature (°C)',
+                 line: { color: '#1e90ff', width: 2 },
+                 marker: { size: 8, color: '#1e90ff' },
                },
              ]}
              layout={{
                autosize: true,
+               margin: { t: 30, b: 100, l: 50, r: 50 },
                xaxis: { title: 'Date', tickangle: 45 },
                yaxis: { title: 'Temperature (°C)' },
-               margin: { t: 30, b: 100, l: 60, r: 20 },
-               showlegend: true,
+               paper_bgcolor: 'transparent',
+               plot_bgcolor: 'transparent',
+               font: { family: 'Arial', color: '#333' },
              }}
              config={{ responsive: true }}
-             className="w-full h-[400px]"
+             className="w-full h-96"
            />
          </div>
        );
